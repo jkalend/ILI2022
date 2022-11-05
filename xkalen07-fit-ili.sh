@@ -46,6 +46,6 @@ sha512sum /mnt/test1/big_file
 echo "10) Emulate faulty disk"
 dd if=/dev/zero of=~/loop4 bs=1M count=200
 losetup /dev/loop4 ~/loop4
-mdadm --manage /dev/md1 --fail /dev/loop2
+mdadm --manage /dev/md1 --fail /dev/loop1
 #mdadm --manage /dev/md0 --remove /dev/loop2
 mdadm --manage /dev/md1 --add /dev/loop4
