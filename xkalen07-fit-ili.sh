@@ -41,11 +41,11 @@ mount /dev/FIT_vg/FIT_lv1 /mnt/test1
 
 echo "9) Create big_file"
 dd if=/dev/urandom of=/mnt/test1/big_file bs=1M count=300
-md512sum /mnt/test1/big_file
+sha512sum /mnt/test1/big_file
 
 echo "10) Emulate faulty disk"
 dd if=/dev/zero of=~/loop4 bs=1M count=200
 losetup /dev/loop4 ~/loop4
-mdadm --manage /dev/md0 --fail /dev/loop2
+mdadm --manage /dev/md1 --fail /dev/loop2
 #mdadm --manage /dev/md0 --remove /dev/loop2
-mdadm --manage /dev/md0 --add /dev/loop4
+mdadm --manage /dev/md1 --add /dev/loop4
