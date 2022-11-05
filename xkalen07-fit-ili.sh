@@ -9,8 +9,8 @@ do
 done
 
 echo "2) Creating RAID1 and RAID0"
-mdadm --create /dev/md1 --level=mirror --raid-devices=2 --metadata=0.9 /dev/loop0 /dev/loop1
-mdadm --create /dev/md0 --level=mirror --raid-devices=2 --metadata=0.9 /dev/loop2 /dev/loop3
+mdadm --create /dev/md1 --level=1 --raid-devices=2 --metadata=0.9 /dev/loop0 /dev/loop1
+mdadm --create /dev/md0 --level=0 --raid-devices=2  /dev/loop2 /dev/loop3
 
 echo "3) Creating physical volume FIT_vg"
 pvcreate /dev/md0
@@ -45,7 +45,7 @@ md512sum /mnt/test1/big_file
 
 echo "10) Emulate faulty disk"
 dd if=/dev/zero of=~/loop4 bs=1M count=200
-losetup /dev/loop4 ~/loop04
+losetup /dev/loop4 ~/loop4
 mdadm --manage /dev/md0 --fail /dev/loop2
 #mdadm --manage /dev/md0 --remove /dev/loop2
 mdadm --manage /dev/md0 --add /dev/loop4
