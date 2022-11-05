@@ -4,8 +4,8 @@ echo "Creating 4 loop devices"
 for i in $(seq 0 3)
 do
     echo "..c reating loop device /dev/loop$i"
-    dd if=/dev/zero of=~/file"${I}".img bs=1MiB count=200
-    losetup /dev/loop"${I}" ~/file"${I}".img
+    dd if=/dev/zero of=~/file"${i}".img bs=1MiB count=200
+    losetup /dev/loop"${i}" ~/file"${i}".img
 done
 
 echo "2) Creating RAID1 and RAID0"
