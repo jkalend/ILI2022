@@ -49,3 +49,4 @@ losetup /dev/loop4 ~/loop4
 mdadm --manage /dev/md1 --fail /dev/loop1
 #mdadm --manage /dev/md0 --remove /dev/loop2
 mdadm --manage /dev/md1 --add /dev/loop4
+mdadm --detail
