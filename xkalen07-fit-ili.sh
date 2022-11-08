@@ -3,7 +3,7 @@
 echo "Creating 4 loop devices"
 for i in $(seq 0 3)
 do
-    echo "..c reating loop device /dev/loop$i"
+    echo "..creating loop device /dev/loop$i"
     dd if=/dev/zero of=~/file"${i}".img bs=1MiB count=200
     losetup /dev/loop"${i}" ~/file"${i}".img
 done
@@ -49,4 +49,4 @@ losetup /dev/loop4 ~/loop4
 mdadm --manage /dev/md1 --fail /dev/loop1
 #mdadm --manage /dev/md0 --remove /dev/loop2
 mdadm --manage /dev/md1 --add /dev/loop4
-mdadm --detail
+mdadm --detail /dev/md1
